@@ -23,7 +23,7 @@ type FriendsGetResponse struct {
 
 // Get returns a list of friends of the user.
 //https://vk.com/dev/friends.get
-func (f *Friends) Get(userId, fields []string) (FaveGetUsersResponse, error) {
+func (f *Friends) Get(userId int, fields []string) (FaveGetUsersResponse, error) {
 	var fieldsWithId []string
 	if len(fields) == 0 {
 		fieldsWithId = append(fields, "id")
