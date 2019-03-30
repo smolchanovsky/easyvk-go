@@ -23,7 +23,13 @@ type FriendsGetResponse struct {
 
 // Get returns a list of friends of the user.
 //https://vk.com/dev/friends.get
-func (f *Friends) Get(userId int, fields []string) (FriendsGetResponse, error) {
+func (f *Friends) Get(userId int) (FriendsGetResponse, error) {
+	return f.GetWithFields(userId, []string{})
+}
+
+// Get returns a list of friends of the user.
+//https://vk.com/dev/friends.get
+func (f *Friends) GetWithFields(userId int, fields []string) (FriendsGetResponse, error) {
 	var fieldsWithId = fields
 	if len(fields) == 0 {
 		fieldsWithId = append(fields, "id")
@@ -40,7 +46,7 @@ func (f *Friends) Get(userId int, fields []string) (FriendsGetResponse, error) {
 	var users FriendsGetResponse
 	err = json.Unmarshal(resp, &users)
 	if err != nil {
-		return FriendsGetResponse{}, err
+		return FriendsGetResponse{},, err
 	}
 
 	return users, nil
